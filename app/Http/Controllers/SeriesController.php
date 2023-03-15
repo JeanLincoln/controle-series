@@ -29,4 +29,11 @@ class SeriesController extends Controller
         $serie->save();
         return to_route('series.index');
     }
+
+    public function destroy(Request $request)
+    {
+        Serie::destroy($request->series);
+
+        return to_route('series.index');
+    }
 }
