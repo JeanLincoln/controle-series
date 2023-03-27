@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-use App\Models\Serie;
+use App\Models\Series;
 use App\Models\Episodes;
 
 class Season extends Model
 {
     use HasFactory;
 
-    public function series(){
-        return $this->belongsTo(Serie::class);
+    public function Series(){
+        return $this->belongsTo(Series::class);
     }
 
     public function episodes()

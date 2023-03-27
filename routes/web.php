@@ -15,7 +15,7 @@ use App\Http\Controllers\SeriesController;
 */
 
 Route::get('/', function () {
-    return redirect('/series');
+    return redirect('/Series');
 });
 
-Route::resource('/series',SeriesController::class)->except(['show']);
+Route::resource('/Series',SeriesController::class)->except(['show']);

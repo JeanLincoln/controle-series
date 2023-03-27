@@ -1,3 +1,3 @@
 <x-layout title="Nova Série">
-     <x-series.form :action="route('series.store')" :nome="old('nome')" method="post"/>
+     <x-Series.form :action="route('Series.store')" :nome="old('nome')" method="post"/>
 </x-layout>

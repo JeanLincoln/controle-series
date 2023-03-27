@@ -8,15 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Season;
 
-class Serie extends Model
+class Series extends Model
 {
     use HasFactory;
 
     protected $fillable = ['nome'];
 
-    public function temporadas()
+    public function seasons()
     {
-        return $this->hasMany(Season::class, 'series_id');
+        return $this->hasMany(Season::class, 'Series_id');
     }
 
     protected static function booted()

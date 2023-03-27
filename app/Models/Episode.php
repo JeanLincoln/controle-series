@@ -13,7 +13,7 @@ class Episode extends Model
     use HasFactory;
     public $timestamps = false;
 
-    public function series(){
+    public function Series(){
         return $this->belongsTo(Season::class);
     }
 
