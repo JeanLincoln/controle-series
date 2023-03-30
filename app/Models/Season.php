@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-use App\Models\series;
+use App\Models\Series;
 use App\Models\Episode;
 
 class Season extends Model
