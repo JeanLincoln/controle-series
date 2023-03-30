@@ -12,43 +12,56 @@ class SeriesController extends Controller
 {
     public function index (Request $request)
     {
-        $Series = Series::all();
+        $series = Series::all();
         $mensagemSucesso = session('mensagem.sucesso');
 
-        return view('Series.index', compact('Series'))->with('mensagemSucesso', $mensagemSucesso);
+        return view('series.index', compact('series'))->with('mensagemSucesso', $mensagemSucesso);
     }
     
     public function create()
     {
-        return view('Series.create');
+        return view('series.create');
     }
 
     public function store(SeriesFormRequest $request)
     {
-        
-        $Series = Series::create($request->all());
-        return to_route('Series.index')->with('mensagem.sucesso', "Série '{$Series->nome}' adicionada com sucesso!");
+        $serie = Series::create($request->all());
+
+        for($i=1;$i <= $request->seasonsQty; $i++){
+            $season = $serie->seasons()->create([
+                'number' => $i
+            ]);
+
+            for($j=1; $j <= $request->episodesPerSeason; $j++){
+                $season->episodes()->create([
+                    'number' => $j
+                ]);
+            }
+        };
+
+        return to_route('series.index')
+            ->with('mensagem.sucesso', "Série '{$serie->nome}' adicionada com sucesso!");
     }
 
-    public function destroy(Series $Series, Request $request)
+    public function destroy(Series $series, Request $request)
     {
-        $Series->delete();
-        return to_route('Series.index')->with('mensagem.sucesso', "Série '{$Series->nome}' removida com sucesso!");
+        $series->delete();
+        return to_route('series.index')->with('mensagem.sucesso', "Série '{$series->nome}' removida com sucesso!");
     
     }
 
-    public function edit(Series $Series)
+    public function edit(Series $series)
     {
-        return view('Series.edit')->with('Series', $Series);
+        return view('series.edit')->with('series', $series);
     
     }
 
-    public function update(Series $Series, SeriesFormRequest $request)
+    public function update(Series $series, SeriesFormRequest $request)
     {
-        $Series->fill($request->all());
-        $Series->save();
+        $series->fill($request->all());
+        $series->save();
 
-        return to_route('Series.index')->with('mensagem.sucesso', "Série '{$Series->nome}' atualizada com sucesso!");
+        return to_route('series.index')->with('mensagem.sucesso', "Série '{$series->nome}' atualizada com sucesso!");
     
     }
 }
