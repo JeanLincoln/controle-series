@@ -3,19 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 use App\Models\Series;
-use App\Models\Season;
-use App\Models\Episode;
 use App\Http\Requests\SeriesFormRequest;
-use App\Repositories\SeriesRepository;
+use App\Repositories\EloquentSeriesRepository;
 
 
 class SeriesController extends Controller
 {
 
-    public function __construct(private SeriesRepository $repository)
+    public function __construct(private EloquentSeriesRepository $repository)
     {
 
     }
